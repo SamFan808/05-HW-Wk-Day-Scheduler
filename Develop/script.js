@@ -38,6 +38,24 @@ function init () {
     }
     console.log(stored);
 }
+// function to clear the page daily before it refreshes at 9AM
+function clear () {
+    var opening = moment('9:00 AM', 'LT');
+    var closing = moment('5:00 PM', 'LT');
+    console.log(opening);
+    // if (timeNow.isAfter(opening) && currentTime.isBefore(closing)){
+    console.log("It's business time!")
+    }
+  
+    // if ("8:59 AM" > timeNow > "11:59 PM" ) {
+    //     // inputItems = ""
+    //     console.log("something is working")
+    // //something local time
+    // } else {
+    // console.log("poopty poopty pants");
+    // }
 
+
+clear();
 inputStore();
 init();
