@@ -12,71 +12,43 @@
 
 
 // Variables
-var body = document.body;
 var dateCurrent = document.getElementById("currentDay");
 var containerC1 = document.querySelector(".container");
-var timeBlock = document.createElement("div");
-var inputBlock = document.createElement("input");
-var inputD1 = document.createElement("div");
-var inputD2 = document.createElement("div");
-var btnDiv = document.createElement("div");
-var hourWork = document.createElement("div");
-var btn = document.createElement("button");
-var text = document.createElement("input");
-var br = document.createElement("br");
-
+var btn = document.querySelector(".saveBtn");
+var inputBlock = document.querySelectorAll("textarea");
 // array to store hourly items
-var inputItem = [];
-
+var inputItems = [];
 // momentjs queries
 var timeTest = moment();
 var timeNow = moment().format('LT');
 dateCurrent.textContent = timeTest.format("dddd, MMMM Do");
-
-// work day hours 8-6 forloop
-    for (var hour = 8; hour <= 18; hour++) {
-        var index = hour - 8;
-        renderTime();
-        console.log(hour);
-    }
-function renderTime () {
-    // create time block
-        containerC1.append(timeBlock);
-        timeBlock.setAttribute("class","time-block");
-        timeBlock.append(inputD1);
-        inputD1.setAttribute("class", "row");
-
-    // create time of day block
-        inputD1.append(hourWork);
-        hourWork.setAttribute("class", "col-md-2");
-        hourWork.setAttribute("id","hour");
-    // create input field block
-        inputD1.append(inputD2);
-        inputD2.setAttribute("class", "col-md");
-        inputD2.appendChild(inputBlock);
-    // create button block
-        inputD1.append(btn);
-        btn.setAttribute("class","col-md-1");
-        btn.setAttribute("id","saveBtn");
-}
-// save button to store input field in local storage
+// function stores input to local storage
 function inputStore () {
-    btn.addEventListener("click", function (event) {
-        event.preventDefault();
-        var inputItem = inputBlock.value;
-        localStorage.setItem("inputItem", JSON.stringify(inputItem));  
-    });
+    localStorage.setItem("inputItems", JSON.stringify(inputItems));   
 }
+// clicking save buttons adds to localStorage
+
+btn.addEventListener("click", function (event) {
+    event.preventDefault();
+    var inputText = inputBlock.value.trim();
+    // if save is clicked without any input, nothing is added
+    if (inputText === "") {
+        return;
+    }
+    // adds the the inputItems array to be store in localStorage
+    inputItems.push(inputText);
+    inputBlock.value = "";
+    // store update items to localStorage
+    inputStore();
+});
 // checks localStorage to see if ithere is any items stored and if they are, assign to the inputDaily
 function init () {
-    var stored = JSON.parse(localStorage.getItem("inputItem"));
+    var stored = JSON.parse(localStorage.getItem("inputItems"));
     if (stored !== null) {
-        inputItem = stored;
+    inputItems = stored;
     }
-    renderTime();
+    console.log(stored);
 }
 
 inputStore();
 init();
-console.log(timeNow);
-console.log(inputItem);
