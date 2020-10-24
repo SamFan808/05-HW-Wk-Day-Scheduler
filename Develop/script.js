@@ -13,31 +13,45 @@ dateCurrent.textContent = timeTest.format("dddd, MMMM Do");
 function inputStore () {
     localStorage.setItem("inputItems", JSON.stringify(inputItems));   
 }
-// for loop to iterate through nodelist of buttons and textareas, added event listener to allow save button to store data in localStorage 
-for (let i = 0; i < btn.length; i++) {
+// for loop sets the input block attributes for each textarea
+for (let i = 0; i < inputBlock.length; i++) {
+        inputBlock[i].setAttribute("data-index", i);
+}
+
+for (let i = 0; i < inputBlock.length; i++) {
     btn[i].addEventListener("click", function (event) {
         event.preventDefault();
-        this.setAttribute("data-index", i);
-
-        var inputText = inputBlock[i].value.trim();
         // if save is clicked without any input, nothing is added
+        var inputText = inputBlock[i].value.trim();
         if (inputText === "") {
         return;
-        }
+        } else {
         // adds the the inputItems array to be store in localStorage
         inputItems.push(inputText);
         // store update items to localStorage
         inputStore();
+        // renderList();
+        }
     });
 }
-// checks localStorage to see if ithere is any items stored and if they are, assign to the inputDaily
+var stored = JSON.parse(localStorage.getItem("inputItems"));
+// checks localStorage to see if there is any items stored and if they are, assign to the inputItems
 function init () {
-    var stored = JSON.parse(localStorage.getItem("inputItems"));
     if (stored !== null) {
     inputItems = stored;
     }
-    console.log(stored);
+    // renderList();
 }
 
-inputStore();
 init();
+
+// function renderList () {
+//     for (var i = 0; i < inputItems.length; i++) {
+//         var inputs = inputItems[i];
+//         inputBlock[i].textContent = inputs;
+//         inputItems.splice("data-index", 2);
+//     }
+// }
+// each input from textarea needs a unique identifier, each textarea needs a unique identifier (index#?), getItem needs to be placed back in each textarea 
+
+// for loop to iterate through nodelist of buttons and textareas, added event listener to allow save button to store data in localStorage
