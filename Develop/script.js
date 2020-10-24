@@ -55,15 +55,23 @@ function clear () {
         console.log('is not between')
     }
 }
-var hourData = document.getElementById("9am");
+var hourData = document.getElementsByClassName("hour");
 function colorTime () {
-    if (hourData===moment().format("h")) {
+    for (let i = 0; i < hourData.length; i++) {
+    var hourNum = hourData[i].dataset.hour;
+        if (hourNum >= moment().format("HH")) {
+            //make something change color
+
         console.log("hit");
-    } else {
+        } else {
+
+
         console.log("no hit");
+        }
     }
 }
-console.log(moment().format("ha"));
+console.log("Local time is " + moment().format("HH") + " o'clocks");
+
 colorTime();
 init();
 clear();
