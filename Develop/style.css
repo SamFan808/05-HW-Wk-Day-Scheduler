@@ -36,7 +36,6 @@ textarea:focus {
 .time-block {
   text-align: center;
   border-radius: 15px;
-  background-color: rgb(255, 204, 137);
 }
 
 .row {
@@ -52,7 +51,7 @@ textarea:focus {
 }
 
 .past {
-  background-color: #d3d3d3;
+  background-color: rgb(255, 204, 137);
   color: white;
 }
 

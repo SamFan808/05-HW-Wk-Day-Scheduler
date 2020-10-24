@@ -3,6 +3,7 @@ var dateCurrent = document.getElementById("currentDay");
 var containerC1 = document.querySelector(".container");
 var btn = document.getElementsByTagName("button");
 var inputBlock = document.getElementsByTagName("textarea");
+var hourData = document.getElementsByClassName("hour");
 // array to store hourly items
 var inputItems = [];
 // momentjs queries
@@ -24,7 +25,7 @@ for (let i = 0; i < inputBlock.length; i++) {
         event.preventDefault();
         // if save is clicked without any input, nothing is added
         var inputText = inputBlock[i].value.trim();
-        inputBlock[i].setAttribute("data-index", i);
+        inputBlock[i].setAttribute("data-index", i); //may not need this
         if (inputText === "") {
             return;
         } else {
@@ -55,21 +56,21 @@ function clear () {
         console.log('is not between')
     }
 }
-var hourData = document.getElementsByClassName("hour");
+// function sets current, future, and past color indicators
 function colorTime () {
     for (let i = 0; i < hourData.length; i++) {
     var hourNum = hourData[i].dataset.hour;
-        if (hourNum >= moment().format("HH")) {
-            //make something change color
-
-        console.log("hit");
+        if (hourNum === moment().format("HH")) {
+            inputBlock[i].className = 'present col-sm';
+        } else if 
+            (hourNum >= moment().format("HH")) {
+            inputBlock[i].className = 'future col-sm'; 
         } else {
-
-
-        console.log("no hit");
+            inputBlock[i].className = 'past col-sm';
         }
     }
 }
+
 console.log("Local time is " + moment().format("HH") + " o'clocks");
 
 colorTime();
