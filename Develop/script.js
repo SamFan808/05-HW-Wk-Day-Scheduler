@@ -42,6 +42,23 @@ function init () {
     }
     // renderList();
 }
+// function to clear the page daily before it refreshes at 9AM
+function clear () {
+    var opening = moment('9:00 AM', 'LT');
+    var closing = moment('5:00 PM', 'LT');
+    console.log(opening);
+    // if (timeNow.isAfter(opening) && currentTime.isBefore(closing)){
+    console.log("It's business time!")
+    }
+  
+    // if ("8:59 AM" > timeNow > "11:59 PM" ) {
+    //     // inputItems = ""
+    //     console.log("something is working")
+    // //something local time
+    // } else {
+    // console.log("poopty poopty pants");
+    // }
+
 
 init();
 
@@ -55,3 +72,6 @@ init();
 // each input from textarea needs a unique identifier, each textarea needs a unique identifier (index#?), getItem needs to be placed back in each textarea 
 
 // for loop to iterate through nodelist of buttons and textareas, added event listener to allow save button to store data in localStorage
+clear();
+inputStore();
+init();
