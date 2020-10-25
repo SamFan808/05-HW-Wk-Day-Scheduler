@@ -24,7 +24,8 @@ function render () {
     for (i = 0; i < storeArray.length; i++) {
         if ((localStorage.getItem(storeArray[i])).length > 0) {            
             document.getElementById(storeArray[i]).innerHTML+=(localStorage.getItem(storeArray[i]));
-        }
+        } else if
+            ((localStorage.getItem(storeArray[i])) === null) {
     }
 }
 // function to clear the page daily at midnight, otherwise get scheduler items
