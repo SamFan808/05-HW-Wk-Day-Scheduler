@@ -8,6 +8,6 @@ Create a functional work day planner that allows users to enter events into hour
 
 [Link to HW 4](https://samfan808.github.io/05-HW-Wk-Day-Scheduler/)
 
-Screenshots below:
+Screenshot below:
 
 <img src="./Assets/Screenshot_1_hw_05.png">
