@@ -3,6 +3,7 @@ var containerC1 = document.querySelector(".container");
 var btn = document.getElementsByTagName("button");
 var inputBlock = document.getElementsByTagName("textarea");
 var hourData = document.getElementsByClassName("hour");
+var textHour = document.getElementsByClassName("text");
 var storeArray = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
 var timeNow = moment();
 dateCurrent.textContent = timeNow.format("dddd, MMMM Do");
@@ -22,12 +23,10 @@ function setStore () {
 // retrieves events from localStorage
 function render () {
     for (i = 0; i < storeArray.length; i++) {
-        if ((localStorage.getItem(storeArray[i])).length > 0) {            
-            document.getElementById(storeArray[i]).innerHTML+=(localStorage.getItem(storeArray[i]));
-        } else if
-            ((localStorage.getItem(storeArray[i])).innerHTML === null) {
-                return;
-            }
+        var stored = (localStorage.getItem(storeArray[i]));
+        if (stored !== null) {
+            (document.getElementById(storeArray[i]).innerHTML+=localStorage.getItem(storeArray[i]));
+        }
     }   
 }
 // function to clear the page daily at midnight, otherwise get scheduler items
