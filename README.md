@@ -8,4 +8,4 @@ Create a functional work day planner that allows users to enter events into hour
 
 Screenshot below:
 
-<img src="./Assets/Screenshot_1_hw_05.png">
+
