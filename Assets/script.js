@@ -22,7 +22,9 @@ function setStore () {
 // retrieves events from localStorage
 function render () {
     for (i = 0; i < storeArray.length; i++) {
-        document.getElementById(storeArray[i]).innerHTML+=(localStorage.getItem(storeArray[i]));
+        if ((localStorage.getItem(storeArray[i])).length > 0) {            
+            document.getElementById(storeArray[i]).innerHTML+=(localStorage.getItem(storeArray[i]));
+        }
     }
 }
 // function to clear the page daily at midnight, otherwise get scheduler items
