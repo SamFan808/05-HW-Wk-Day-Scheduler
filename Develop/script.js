@@ -5,46 +5,82 @@ var btn = document.getElementsByTagName("button");
 var inputBlock = document.getElementsByTagName("textarea");
 var hourData = document.getElementsByClassName("hour");
 // array to store hourly items
-var inputItems = [];
+// var inputItems = [];
 // momentjs queries
 var timeTest = moment();
 var timeNow = moment();
 dateCurrent.textContent = timeTest.format("dddd, MMMM Do");
 
 // function stores input to local storage
-function inputStore () {
-    localStorage.setItem("inputItems", JSON.stringify(inputItems));   
-}
-// for loop sets the input block attributes for each textarea
-for (let i = 0; i < inputBlock.length; i++) {
-}
-// sets click event for each button and stores text from textarea into inputItems array
+// function inputStore () {
+//     localStorage.setItem("inputItems", JSON.stringify(inputItems));   
+// }
 
-for (let i = 0; i < inputBlock.length; i++) {
-    btn[i].addEventListener("click", function (event) {
-        event.preventDefault();
-        // if save is clicked without any input, nothing is added
-        var inputText = inputBlock[i].value.trim();
-        inputBlock[i].setAttribute("data-index", i); //may not need this
-        if (inputText === "") {
-            return;
-        } else {
-        // adds the the inputItems array to be stored in localStorage
-        inputItems.push(inputText);
-        // store update items to localStorage
-        inputStore();
-        // renderList();
+// sets click event for each button and stores text from textarea into inputItems array
+// for (let i = 0; i < inputBlock.length; i++) {
+//     btn[i].addEventListener("click", function (event) {
+//         event.preventDefault();
+//         // if save is clicked without any input, nothing is added
+//         var inputText = inputBlock[i].value.trim();
+//          //may not need this
+//         if (inputText === "") {
+//             return;
+//         } else {
+//         // adds the the inputItems array to be stored in localStorage
+//         // inputItems.push(inputText);
+//         // store update items to localStorage
+//         // inputStore();
+//         renderTime();
+//         }
+//     });
+// }
+// function clickStore () {
+//     document.querySelector("button").addEventListener("click", function (event) {
+//     event.preventDefault();
+
+
+    
+
+
+
+document.querySelector("button").addEventListener("click", function(event) {
+    event.preventDefault();
+    if (event.target != "button") {
+
+        localStorage.setItem("9am", (document.getElementById("9am").value));
+        localStorage.setItem("10am", (document.getElementById("10am").value));
+        localStorage.setItem("11am", (document.getElementById("11am").value));
+        localStorage.setItem("12pm", (document.getElementById("12pm").value));
+        localStorage.setItem("1pm", (document.getElementById("1pm").value));
+        localStorage.setItem("2pm", (document.getElementById("2pm").value));
+        localStorage.setItem("3pm", (document.getElementById("3pm").value));
+        localStorage.setItem("4pm", (document.getElementById("4pm").value));
+        localStorage.setItem("5pm", (document.getElementById("5pm").value));
         }
-    });
+});
+
+function render () {
+    document.getElementById("9am").innerHTML+=(localStorage.getItem("9am"));
+    document.getElementById("10am").innerHTML+=(localStorage.getItem("10am"));
 }
+render();
+// function renderTime () {
+//     for (let i = 0; i < inputBlock.length; i++) {
+//         var item = inputItems[i];
+//         inputBlock[i].setAttribute("data-index", i);
+//         inputBlock[i].textContent = item
+//         console.log(item);
+//     }
+// }
+//maybe localStorage needs 
 // checks localStorage to see if there is any items stored and if they are, assign to the inputItems
-function init () {
-    var stored = JSON.parse(localStorage.getItem("inputItems"));
-    if (stored !== null) {
-    inputItems = stored;
-    }
-    // renderList();
-}
+// function init () {
+//     var stored = JSON.parse(localStorage.getItem("inputItems"));
+//     if (stored !== null) {
+//     inputItems = stored;
+//     }
+//     // renderTime();
+// }
 // function to clear the page daily before it refreshes at 9AM
 function clear () {
     var format = 'hh:mm:ss';
@@ -59,7 +95,7 @@ function clear () {
 // function sets current, future, and past color indicators
 function colorTime () {
     for (let i = 0; i < hourData.length; i++) {
-    var hourNum = hourData[i].dataset.hour;
+        var hourNum = hourData[i].dataset.hour;
         if (hourNum === moment().format("HH")) {
             inputBlock[i].className = 'present col-sm';
         } else if 
@@ -71,20 +107,12 @@ function colorTime () {
     }
 }
 
-console.log("Local time is " + moment().format("HH") + " o'clocks");
-
 colorTime();
-init();
 clear();
-inputStore();
 
-// function renderList () {
-//     for (var i = 0; i < inputItems.length; i++) {
-//         var inputs = inputItems[i];
-//         inputBlock[i].textContent = inputs;
-//         inputItems.splice("data-index", 2);
-//     }
-// 
+// inputStore();
+
+// console.log(inputItems);
 
 // each input from textarea needs a unique identifier, each textarea needs a unique identifier (index#?), getItem needs to be placed back in each textarea 
 
