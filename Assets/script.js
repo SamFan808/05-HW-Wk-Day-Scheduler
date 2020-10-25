@@ -25,8 +25,10 @@ function render () {
         if ((localStorage.getItem(storeArray[i])).length > 0) {            
             document.getElementById(storeArray[i]).innerHTML+=(localStorage.getItem(storeArray[i]));
         } else if
-            ((localStorage.getItem(storeArray[i])) === null) {
-    }
+            ((localStorage.getItem(storeArray[i])).innerHTML === null) {
+                return;
+            }
+    }   
 }
 // function to clear the page daily at midnight, otherwise get scheduler items
 function clear () {
@@ -37,7 +39,7 @@ function clear () {
         }
     }   else {
             render();
-        }
+    }
 }
 // function sets current, future, and past color indicators
 function colorTime () {
