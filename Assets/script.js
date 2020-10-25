@@ -4,7 +4,6 @@ var btn = document.getElementsByTagName("button");
 var inputBlock = document.getElementsByTagName("textarea");
 var hourData = document.getElementsByClassName("hour");
 var storeArray = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
-// momentjs queries
 var timeNow = moment();
 dateCurrent.textContent = timeNow.format("dddd, MMMM Do");
 // sets click event for each button and stores items into localStorage
@@ -14,27 +13,27 @@ for (let i = 0; i < inputBlock.length; i++) {
         setStore();
     });
 }
+// puts events into localStorage
 function setStore () {
     for (i = 0; i < storeArray.length; i++) {
         localStorage.setItem(storeArray[i], (document.getElementById(storeArray[i]).value));
     }
 }
+// retrieves events from localStorage
 function render () {
     for (i = 0; i < storeArray.length; i++) {
         document.getElementById(storeArray[i]).innerHTML+=(localStorage.getItem(storeArray[i]));
     }
 }
-// function to clear the page daily before it refreshes at 9AM
+// function to clear the page daily at midnight, otherwise get scheduler items
 function clear () {
-    var format = 'hh:mm:ss';
-    var beforeTime = moment("23:59:00", "HH:mm");
-    var afterTime = moment("08:59:00", "HH:mm");
-    if (timeNow.isBetween(beforeTime, afterTime)) {
+    var clearTime = moment("00:00", "HH:mm");
+    if (timeNow === clearTime) {
         for (i = 0; i < storeArray.length; i++) {
             localStorage.setItem(storeArray[i],"");
         }
     }   else {
-            console.log("is not between");
+            render();
         }
 }
 // function sets current, future, and past color indicators
@@ -51,6 +50,5 @@ function colorTime () {
         }
     }
 }
-render();
 colorTime();
 clear();
